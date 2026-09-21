@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ronaldo's Buffet | Chinese Fusion & Chorizo Specials</title>
+
+    <meta
+        name="description"
+        content="Ronaldo's Buffet is a fictional restaurant website created as a school project."
+    >
+
+    <meta property="og:title" content="Ronaldo's Buffet — School Project">
+    <meta
+        property="og:description"
+        content="A fictional restaurant website created for a school project."
+    >
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(120, 0, 255, 0.16), transparent 35%),
+                radial-gradient(circle at bottom right, rgba(255, 0, 80, 0.12), transparent 35%),
+                #09090d;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1150px, calc(100% - 32px));
+            margin: 0 auto;
+        }
+
+        /* =========================
+           SCHOOL PROJECT NOTICE
+        ========================= */
+
+        .school-banner {
+            background: linear-gradient(90deg, #5b21b6, #7c3aed, #5b21b6);
+            color: white;
+            text-align: center;
+            padding: 9px 15px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .school-banner span {
+            opacity: 0.85;
+            font-weight: 400;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            backdrop-filter: blur(16px);
+            background: rgba(9, 9, 13, 0.88);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .nav-inner {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: #a855f7;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #d4d4d8;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            color: #fff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: #18181d;
+            color: white;
+            border-radius: 10px;
+            min-width: 44px;
+            min-height: 44px;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
+        .btn {
+            border: none;
+            border-radius: 12px;
+            padding: 12px 18px;
+            min-height: 44px;
+            font-weight: 700;
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #1a1a21;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .btn-danger {
+            background: #7f1d1d;
+            color: white;
+        }
+
+        .btn-small {
+            padding: 9px 13px;
+            font-size: 13px;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 350px;
+            height: 350px;
+            background: rgba(139, 92, 246, 0.16);
+            top: 10%;
+            left: -100px;
+        }
+
+        .hero::after {
+            width: 300px;
+            height: 300px;
+            background: rgba(239, 68, 68, 0.12);
+            right: -80px;
+            bottom: 10%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 55px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: #c4b5fd;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            line-height: 0.98;
+            letter-spacing: -3px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #c084fc, #f0abfc, #fda4af);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #c4c4cc;
+            font-size: 17px;
+            margin-bottom: 26px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .demo-card {
+            background: linear-gradient(
+                145deg,
+                rgba(255,255,255,0.09),
+                rgba(255,255,255,0.025)
+            );
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 26px;
+            padding: 28px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.3);
+        }
+
+        .demo-card-icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .demo-card h3 {
+            margin-bottom: 8px;
+            font-size: 24px;
+        }
+
+        .demo-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 20px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.07);
+            font-size: 13px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #71717a;
+        }
+
+        .status-pill.open .status-dot {
+            background: #22c55e;
+            box-shadow: 0 0 10px rgba(34,197,94,0.8);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 85px;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 38px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(30px, 5vw, 46px);
+            line-height: 1.1;
+            margin-bottom: 12px;
+        }
+
+        .section-heading p {
+            color: #a1a1aa;
+        }
+
+        .section-kicker {
+            color: #a78bfa;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255,255,255,0.045);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #b7b7c0;
+            font-size: 14px;
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .filter-button {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #15151b;
+            color: #cfcfd6;
+            border-radius: 999px;
+            padding: 10px 16px;
+            min-height: 42px;
+        }
+
+        .filter-button.active {
+            background: #7c3aed;
+            color: white;
+            border-color: #8b5cf6;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .menu-card {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 22px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(168,85,247,0.5);
+        }
+
+        .food-icon {
+            width: 58px;
+            height: 58px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: rgba(139,92,246,0.13);
+            font-size: 30px;
+            margin-bottom: 17px;
+        }
+
+        .menu-card h3 {
+            margin-bottom: 7px;
+        }
+
+        .menu-card p {
+            color: #a1a1aa;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .menu-price {
+            font-weight: 800;
+            color: #d8b4fe;
+        }
+
+        /* =========================
+           PRICING
+        ========================= */
+
+        .pricing-box {
+            background: linear-gradient(
+                145deg,
+                rgba(124,58,237,0.13),
+                rgba(255,255,255,0.035)
+            );
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 25px;
+            padding: 30px;
+        }
+
+        .project-label {
+            display: inline-block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: #c4b5fd;
+            background: rgba(139,92,246,0.12);
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 999px;
+            padding: 6px 10px;
+            margin-bottom: 16px;
+        }
+
+        .price-display {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .price-number {
+            font-size: clamp(45px, 8vw, 70px);
+            font-weight: 800;
+            line-height: 1;
+            margin: 8px 0;
+        }
+
+        .price-label {
+            color: #a1a1aa;
+        }
+
+        .price-slider {
+            width: 100%;
+            accent-color: #8b5cf6;
+            cursor: pointer;
+        }
+
+        .slider-row {
+            display: flex;
+            justify-content: space-between;
+            color: #a1a1aa;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .pricing-table th,
+        .pricing-table td {
+            padding: 13px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .pricing-table th {
+            color: #ddd6fe;
+            background: rgba(255,255,255,0.04);
+        }
+
+        .pricing-table td {
+            color: #c4c4cc;
+        }
+
+        .pricing-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* =========================
+           HOURS
+        ========================= */
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .hours-card,
+        .location-card {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 25px;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-top: 18px;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            color: #bdbdc6;
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list li.today {
+            color: white;
+            font-weight: 700;
+        }
+
+        .today-tag {
+            color: #86efac;
+            font-size: 11px;
+            margin-left: 6px;
+        }
+
+        .open-status-box {
+            margin-top: 20px;
+            padding: 14px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.045);
+            color: #cfcfd6;
+            font-size: 13px;
+        }
+
+        .map-placeholder {
+            min-height: 250px;
+            border-radius: 18px;
+            background:
+                linear-gradient(rgba(139,92,246,0.1), rgba(139,92,246,0.05)),
+                repeating-linear-gradient(
+                    45deg,
+                    #14141b,
+                    #14141b 10px,
+                    #181820 10px,
+                    #181820 20px
+                );
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 25px;
+            margin-top: 18px;
+        }
+
+        .map-placeholder span {
+            font-size: 45px;
+        }
+
+        .map-placeholder p {
+            color: #a1a1aa;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* =========================
+           TAKEOUT / CART
+        ========================= */
+
+        .takeout-layout {
+            display: grid;
+            grid-template-columns: 1fr 0.85fr;
+            gap: 25px;
+        }
+
+        .form-card,
+        .cart-card {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 22px;
+            padding: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            color: #d4d4d8;
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            background: #0c0c11;
+            border: 1px solid rgba(255,255,255,0.12);
+            color: white;
+            border-radius: 11px;
+            padding: 12px 13px;
+            min-height: 44px;
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139,92,246,0.15);
+        }
+
+        .cart-items {
+            margin-top: 18px;
+        }
+
+        .cart-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .cart-row small {
+            color: #a1a1aa;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .demo-note {
+            margin-top: 15px;
+            color: #a1a1aa;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           REVIEWS
+        ========================= */
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .review-card {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 22px;
+        }
+
+        .stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .review-card p {
+            color: #b8b8c1;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .review-name {
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .sample-review {
+            display: inline-block;
+            color: #a78bfa;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* =========================
+           FAQ
+        ========================= */
+
+        .faq {
+            max-width: 850px;
+        }
+
+        details {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 17px 20px;
+            margin-bottom: 12px;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        details p {
+            color: #a1a1aa;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .contact-card {
+            background: #121218;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 24px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 13px;
+            align-items: flex-start;
+            margin-top: 17px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: rgba(139,92,246,0.13);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+        }
+
+        .contact-item p {
+            color: #a1a1aa;
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 45px 0 30px;
+            background: #07070a;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 12px;
+        }
+
+        .footer-column p {
+            color: #888892;
+            font-size: 13px;
+            max-width: 430px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a {
+            color: #9999a2;
+            font-size: 13px;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.07);
+            margin-top: 30px;
+            padding-top: 20px;
+            color: #666670;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.78);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            width: min(620px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #111117;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 22px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 30px 100px rgba(0,0,0,0.55);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: #19191f;
+            color: white;
+        }
+
+        .modal-content h2 {
+            margin-right: 45px;
+            margin-bottom: 8px;
+        }
+
+        .modal-subtitle {
+            color: #a1a1aa;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        .success-box {
+            background: rgba(34,197,94,0.09);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 15px;
+            padding: 18px;
+            margin-top: 18px;
+        }
+
+        .success-box h3 {
+            color: #86efac;
+            margin-bottom: 7px;
+        }
+
+        .error-message {
+            color: #fca5a5;
+            font-size: 12px;
+            margin-top: 7px;
+            display: none;
+        }
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        .back-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50%;
+            background: #17171d;
+            color: white;
+            display: none;
+            z-index: 800;
+        }
+
+        .back-top.show {
+            display: block;
+        }
+
+        /* =========================
+           ANIMATIONS
+        ========================= */
+
+        .fade-in {
+            animation: fadeIn 0.7s ease both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 850px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                left: 16px;
+                right: 16px;
+                top: 70px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                background: #111117;
+                border: 1px solid rgba(255,255,255,0.1);
+                border-radius: 15px;
+                padding: 8px;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 13px;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .nav-buttons {
+                display: none;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .hours-grid,
+            .takeout-layout,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid,
+            .review-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 75px 0;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .container {
+                width: min(100% - 24px, 1150px);
+            }
+
+            section {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .menu-grid,
+            .review-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-box {
+                padding: 20px;
+            }
+
+            .pricing-table {
+                font-size: 13px;
+            }
+
+            .pricing-table th,
+            .pricing-table td {
+                padding: 11px 9px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SCHOOL PROJECT NOTICE -->
+    <div class="school-banner">
+        🎓 School Project / Demo
+        <span> — Ronaldo's Buffet is a fictional restaurant website and is not a real restaurant.</span>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="#home" class="logo">
+                Ronaldo's <span>Buffet</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#hours">Hours</a></li>
+                <li><a href="#takeout">Takeout</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-buttons">
+                <button class="btn btn-primary btn-small" onclick="openTakeout()">
+                    Demo Order
+                </button>
+            </div>
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="fade-in">
+
+                    <div class="eyebrow">
+                        Chinese Fusion • Chorizo Specials • School Project
+                    </div>
+
+                    <h1>
+                        Welcome to<br>
+                        <span>Ronaldo's Buffet</span>
+                    </h1>
+
+                    <p>
+                        A fictional restaurant website created for a school project.
+                        Explore the menu, pricing system, hours, takeout demo,
+                        and other features of the site.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn btn-primary">
+                            🍜 Explore Menu
+                        </a>
+
+                        <button
+                            class="btn btn-secondary"
+                            type="button"
+                            onclick="openTakeout()"
+                        >
+                            🛍️ Try Takeout Demo
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="demo-card fade-in">
+
+                    <div class="demo-card-icon">🍜</div>
+
+                    <h3>School Project Demo</h3>
+
+                    <p>
+                        This website demonstrates what a restaurant website
+                        could look like. Orders and forms are demonstrations only.
+                    </p>
+
+                    <div
+                        class="status-pill"
+                        id="heroStatus"
+                        aria-live="polite"
+                    >
+                        <span class="status-dot"></span>
+                        <span id="heroStatusText">Checking hours...</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">About the project</div>
+
+                    <h2>A restaurant idea built for school.</h2>
+
+                    <p>
+                        Ronaldo's Buffet is a fictional restaurant concept.
+                        The website is designed to demonstrate HTML, CSS,
+                        JavaScript, forms, responsive design, and interactive
+                        website features.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+
+                    <div class="info-card">
+                        <h3>🍽️ The Concept</h3>
+
+                        <p>
+                            A fictional buffet combining Chinese-inspired dishes
+                            with chorizo specials. Customers choose the number
+                            of plates they want, and the project calculates the
+                            example price.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>💻 The Website</h3>
+
+                        <p>
+                            This project includes a responsive menu, pricing
+                            system, automatic business hours, forms, FAQ,
+                            sample reviews, and interactive JavaScript features.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- MENU -->
+        <section id="menu">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Menu</div>
+
+                    <h2>Pick something from the fictional menu.</h2>
+
+                    <p>
+                        These are example menu items created for the school project.
+                    </p>
+                </div>
+
+                <div class="menu-controls">
+
+                    <button
+                        class="filter-button active"
+                        type="button"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        type="button"
+                        data-filter="chinese"
+                    >
+                        Chinese Fusion
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        type="button"
+                        data-filter="chorizo"
+                    >
+                        Chorizo
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        type="button"
+                        data-filter="sides"
+                    >
+                        Sides
+                    </button>
+
+                    <button
+                        class="filter-button"
+                        type="button"
+                        data-filter="dessert"
+                    >
+                        Dessert
+                    </button>
+
+                </div>
+
+
+                <div class="menu-grid" id="menuGrid">
+
+                    <article class="menu-card" data-category="chinese">
+                        <div class="food-icon">🥡</div>
+                        <h3>Fusion Fried Rice</h3>
+                        <p>
+                            Fried rice with vegetables, egg, and a fictional
+                            fusion-style seasoning.
+                        </p>
+                        <div class="menu-price">$3.49</div>
+                    </article>
+
+                    <article class="menu-card" data-category="chinese">
+                        <div class="food-icon">🍜</div>
+                        <h3>Chow Mein Bowl</h3>
+                        <p>
+                            Noodles mixed with vegetables and a savory
+                            fictional sauce.
+                        </p>
+                        <div class="menu-price">$4.29</div>
+                    </article>
+
+                    <article class="menu-card" data-category="chinese">
+                        <div class="food-icon">🥟</div>
+                        <h3>Veggie Dumplings</h3>
+                        <p>
+                            Steamed dumplings filled with vegetables.
+                        </p>
+                        <div class="menu-price">$3.99</div>
+                    </article>
+
+                    <article class="menu-card" data-category="chorizo">
+                        <div class="food-icon">🌮</div>
+                        <h3>Chorizo Tacos</h3>
+                        <p>
+                            Fictional tacos featuring seasoned chorizo,
+                            vegetables, and toppings.
+                        </p>
+                        <div class="menu-price">$4.99</div>
+                    </article>
+
+                    <article class="menu-card" data-category="chorizo">
+                        <div class="food-icon">🌯</div>
+                        <h3>Chorizo Fusion Wrap</h3>
+                        <p>
+                            A fictional wrap combining chorizo with
+                            fusion-style ingredients.
+                        </p>
+                        <div class="menu-price">$5.49</div>
+                    </article>
+
+                    <article class="menu-card" data-category="sides">
+                        <div class="food-icon">🍚</div>
+                        <h3>Steamed Rice</h3>
+                        <p>
+                            Simple steamed rice for the fictional buffet.
+                        </p>
+                        <div class="menu-price">$1.99</div>
+                    </article>
+
+                    <article class="menu-card" data-category="sides">
+                        <div class="food-icon">🥦</div>
+                        <h3>Mixed Vegetables</h3>
+                        <p>
+                            A fictional combination of steamed vegetables.
+                        </p>
+                        <div class="menu-price">$2.49</div>
+                    </article>
+
+                    <article class="menu-card" data-category="dessert">
+                        <div class="food-icon">🍪</div>
+                        <h3>Fortune Cookie</h3>
+                        <p>
+                            A classic fictional dessert option.
+                        </p>
+                        <div class="menu-price">$0.99</div>
+                    </article>
+
+                    <article class="menu-card" data-category="dessert">
+                        <div class="food-icon">🍮</div>
+                        <h3>Sweet Fusion Pudding</h3>
+                        <p>
+                            A fictional creamy dessert created for the project.
+                        </p>
+                        <div class="menu-price">$2.49</div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PRICING -->
+        <section id="pricing">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Pricing</div>
+
+                    <h2>Example plate pricing</h2>
+
+                    <p>
+                        The project uses a price-per-number-of-plates system.
+                        These prices are fictional and can be changed in the code.
+                    </p>
+                </div>
+
+
+                <div class="pricing-box">
+
+                    <div class="project-label">
+                        School project pricing — editable
+                    </div>
+
+                    <div class="price-display">
+
+                        <div class="price-label">
+                            Selected number of plates
+                        </div>
+
+                        <div
+                            class="price-number"
+                            id="priceNumber"
+                        >
+                            $4.99
+                        </div>
+
+                        <div
+                            class="price-label"
+                            id="priceDescription"
+                        >
+                            1 plate
+                        </div>
+
+                    </div>
+
+
+                    <input
+                        class="price-slider"
+                        id="priceSlider"
+                        type="range"
+                        min="1"
+                        max="5"
+                        value="1"
+                        step="1"
+                        aria-label="Number of plates"
+                    >
+
+                    <div class="slider-row">
+                        <span>1 plate</span>
+                        <span>5 plates</span>
+                    </div>
+
+
+                    <table class="pricing-table">
+                        <thead>
+                            <tr>
+                                <th>Plates</th>
+                                <th>Example Price</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="pricingTableBody">
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HOURS -->
+        <section id="hours">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Hours & Location</div>
+
+                    <h2>Automatic hours system</h2>
+
+                    <p>
+                        The website checks the visitor's current browser time.
+                        The status is not hard-coded to Wednesday or any other day.
+                    </p>
+                </div>
+
+
+                <div class="hours-grid">
+
+                    <div class="hours-card">
+
+                        <h3>🕐 Example Hours</h3>
+
+                        <ul class="hours-list" id="hoursList">
+
+                            <li data-day="0">
+                                <span>Sunday</span>
+                                <span>5:00 PM – 9:00 PM</span>
+                            </li>
+
+                            <li data-day="1">
+                                <span>Monday</span>
+                                <span>5:00 PM – 9:00 PM</span>
+                            </li>
+
+                            <li data-day="2">
+                                <span>Tuesday</span>
+                                <span>5:00 PM – 9:00 PM</span>
+                            </li>
+
+                            <li data-day="3">
+                                <span>Wednesday</span>
+                                <span>5:00 PM – 9:00 PM</span>
+                            </li>
+
+                            <li data-day="4">
+                                <span>Thursday</span>
+                                <span>5:00 PM – 9:00 PM</span>
+                            </li>
+
+                            <li data-day="5">
+                                <span>Friday</span>
+                                <span>5:00 PM – 10:00 PM</span>
+                            </li>
+
+                            <li data-day="6">
+                                <span>Saturday</span>
+                                <span>5:00 PM – 10:00 PM</span>
+                            </li>
+
+                        </ul>
+
+
+                        <div
+                            class="open-status-box"
+                            id="openStatus"
+                            aria-live="polite"
+                        >
+                            Checking current hours...
+                        </div>
+
+                    </div>
+
+
+                    <div class="location-card">
+
+                        <h3>📍 Project Location</h3>
+
+                        <div class="map-placeholder">
+                            <div>
+                                <span>🗺️</span>
+
+                                <p>
+                                    Fictional restaurant location<br>
+                                    Birmingham, Alabama
+                                </p>
+
+                                <p>
+                                    <strong>
+                                        This is a school-project demonstration,
+                                        not a real business location.
+                                    </strong>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TAKEOUT -->
+        <section id="takeout">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Takeout Demo</div>
+
+                    <h2>Try the fictional ordering system.</h2>
+
+                    <p>
+                        This form works inside the webpage, but it does not send
+                        a real restaurant order.
+                    </p>
+                </div>
+
+
+                <div class="takeout-layout">
+
+                    <div class="form-card">
+
+                        <h3>🛍️ Demo Takeout Form</h3>
+
+                        <form id="takeoutForm">
+
+                            <div class="form-group">
+                                <label for="customerName">
+                                    Name
+                                </label>
+
+                                <input
+                                    id="customerName"
+                                    type="text"
+                                    placeholder="Example: Ronaldo"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="customerContact">
+                                    Email or phone
+                                </label>
+
+                                <input
+                                    id="customerContact"
+                                    type="text"
+                                    placeholder="Example: example@email.com"
+                                    required
+                                >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="pickupTime">
+                                    Pickup time
+                                </label>
+
+                                <select id="pickupTime" required>
+                                    <option value="">Choose a time</option>
+                                    <option>5:00 PM</option>
+                                    <option>5:30 PM</option>
+                                    <option>6:00 PM</option>
+                                    <option>6:30 PM</option>
+                                    <option>7:00 PM</option>
+                                    <option>7:30 PM</option>
+                                    <option>8:00 PM</option>
+                                    <option>8:30 PM</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="takeoutPlates">
+                                    Number of plates
+                                </label>
+
+                                <select id="takeoutPlates" required>
+                                    <option value="1">1 plate — $4.99</option>
+                                    <option value="2">2 plates — $7.99</option>
+                                    <option value="3">3 plates — $10.99</option>
+                                    <option value="4">4 plates — $13.99</option>
+                                    <option value="5">5 plates — $16.99</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="takeoutNotes">
+                                    Notes
+                                </label>
+
+                                <textarea
+                                    id="takeoutNotes"
+                                    placeholder="Example: No onions"
+                                ></textarea>
+                            </div>
+
+
+                            <button
+                                class="btn btn-primary"
+                                type="submit"
+                            >
+                                Review Demo Order
+                            </button>
+
+                        </form>
+
+
+                        <div
+                            id="takeoutSuccess"
+                            class="success-box"
+                            style="display:none;"
+                            aria-live="polite"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="cart-card">
+
+                        <h3>🧾 Order Preview</h3>
+
+                        <div class="cart-items">
+
+                            <div class="cart-row">
+                                <div>
+                                    <strong id="cartPlateText">
+                                        1 plate
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+                                        Example buffet pricing
+                                    </small>
+                                </div>
+
+                                <strong id="cartPlatePrice">
+                                    $4.99
+                                </strong>
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart-total">
+                            <span>Total</span>
+                            <span id="cartTotal">$4.99</span>
+                        </div>
+
+
+                        <p class="demo-note">
+                            ⚠️ Demo only: clicking the form does not charge a card,
+                            contact a restaurant, or place a real order.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REVIEWS -->
+        <section id="reviews">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Reviews</div>
+
+                    <h2>Example customer reviews</h2>
+
+                    <p>
+                        These are fictional sample reviews made specifically
+                        for the school project. They are not real customer reviews.
+                    </p>
+                </div>
+
+
+                <div class="review-grid">
+
+                    <article class="review-card">
+                        <div class="stars">★★★★★</div>
+
+                        <p>
+                            "The fried rice was my favorite part of the
+                            fictional menu."
+                        </p>
+
+                        <div class="review-name">
+                            Example Student
+                        </div>
+
+                        <div class="sample-review">
+                            Sample review
+                        </div>
+                    </article>
+
+
+                    <article class="review-card">
+                        <div class="stars">★★★★☆</div>
+
+                        <p>
+                            "I liked how the website showed the price
+                            changing with the number of plates."
+                        </p>
+
+                        <div class="review-name">
+                            Example Visitor
+                        </div>
+
+                        <div class="sample-review">
+                            Sample review
+                        </div>
+                    </article>
+
+
+                    <article class="review-card">
+                        <div class="stars">★★★★★</div>
+
+                        <p>
+                            "The takeout demo was easy to use and showed
+                            the total before submitting."
+                        </p>
+
+                        <div class="review-name">
+                            Example Customer
+                        </div>
+
+                        <div class="sample-review">
+                            Sample review
+                        </div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FAQ -->
+        <section id="faq">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">FAQ</div>
+
+                    <h2>Frequently asked questions</h2>
+                </div>
+
+
+                <div class="faq">
+
+                    <details>
+                        <summary>
+                            Is Ronaldo's Buffet a real restaurant?
+                        </summary>
+
+                        <p>
+                            No. Ronaldo's Buffet is a fictional restaurant
+                            website created as a school project.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Can I actually place an order?
+                        </summary>
+
+                        <p>
+                            No. The takeout system is an interactive demonstration.
+                            It does not send an actual order or charge money.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Are the prices real?
+                        </summary>
+
+                        <p>
+                            No. The prices are example prices created for
+                            this project and can be changed in the JavaScript.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Why does the website say Open or Closed?
+                        </summary>
+
+                        <p>
+                            JavaScript checks the visitor's current browser
+                            day and time and compares it with the example
+                            hours configured in the project.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Are the reviews real?
+                        </summary>
+
+                        <p>
+                            No. The reviews are clearly labeled as sample
+                            reviews because this is a school project.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Can the prices be changed?
+                        </summary>
+
+                        <p>
+                            Yes. The prices are stored in one JavaScript
+                            array, making them easy to edit.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <div class="section-kicker">Contact</div>
+
+                    <h2>Project contact information</h2>
+
+                    <p>
+                        This section is also part of the fictional restaurant
+                        demonstration.
+                    </p>
+                </div>
+
+
+                <div class="contact-grid">
+
+                    <div class="contact-card">
+
+                        <h3>📞 Example Contact</h3>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+
+                            <div>
+                                <strong>Email</strong>
+                                <p>
+                                    example@ronaldosbuffet.school
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+
+                            <div>
+                                <strong>Phone</strong>
+                                <p>
+                                    (205) 555-0199
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+
+                            <div>
+                                <strong>Location</strong>
+                                <p>
+                                    Birmingham, Alabama
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="contact-card">
+
+                        <h3>🎓 About This Website</h3>
+
+                        <p
+                            style="
+                                color:#a1a1aa;
+                                font-size:14px;
+                                margin-top:12px;
+                            "
+                        >
+                            This website was designed as a school project
+                            to demonstrate front-end web development.
+                        </p>
+
+                        <div style="margin-top:18px;">
+                            <span class="project-label">
+                                HTML + CSS + JavaScript
+                            </span>
+                        </div>
+
+                        <p
+                            style="
+                                color:#777780;
+                                font-size:12px;
+                                margin-top:12px;
+                            "
+                        >
+                            No real purchases, reservations, restaurant
+                            services, or customer accounts are provided.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div class="footer-column">
+
+                    <h3>Ronaldo's Buffet</h3>
+
+                    <p>
+                        A fictional restaurant website created for a school
+                        project. All menu items, prices, reviews, contact
+                        information, and restaurant services shown here are
+                        examples.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Navigate</h3>
+
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#hours">Hours</a></li>
+                        <li><a href="#takeout">Takeout Demo</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Project</h3>
+
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#reviews">Sample Reviews</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+                © 2026 Ronaldo's Buffet — School Project / Fictional Restaurant Demo
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- BACK TO TOP -->
+    <button
+        class="back-top"
+        id="backTop"
+        type="button"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
+
+
+    <!-- TAKEOUT MODAL -->
+    <div
+        class="modal"
+        id="takeoutModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="takeoutModalTitle"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close-modal"
+                type="button"
+                onclick="closeModal('takeoutModal')"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <h2 id="takeoutModalTitle">
+                Takeout Demo
+            </h2>
+
+            <p class="modal-subtitle">
+                This is a school-project demonstration. It does not place a real order.
+            </p>
+
+            <div
+                class="success-box"
+                style="display:block;"
+            >
+                <h3>🛍️ Demo only</h3>
+
+                <p style="color:#a1a1aa; font-size:13px;">
+                    Use the Takeout section below to try the interactive
+                    ordering system.
+                </p>
+            </div>
+
+            <div style="margin-top:20px;">
+                <a
+                    href="#takeout"
+                    class="btn btn-primary"
+                    onclick="closeModal('takeoutModal')"
+                >
+                    Go to Takeout Form
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATERING MODAL -->
+    <div
+        class="modal"
+        id="cateringModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cateringModalTitle"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="close-modal"
+                type="button"
+                onclick="closeModal('cateringModal')"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <h2 id="cateringModalTitle">
+                Catering Demo
+            </h2>
+
+            <p class="modal-subtitle">
+                A fictional catering request form for the school project.
+            </p>
+
+            <form id="cateringForm">
+
+                <div class="form-group">
+                    <label for="cateringName">Name</label>
+
+                    <input
+                        id="cateringName"
+                        type="text"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="eventType">Event type</label>
+
+                    <select id="eventType" required>
+                        <option value="">Choose one</option>
+                        <option>Birthday</option>
+                        <option>School Event</option>
+                        <option>Family Event</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="guestCount">Number of guests</label>
+
+                    <input
+                        id="guestCount"
+                        type="number"
+                        min="1"
+                        max="1000"
+                        required
+                    >
+                </div>
+
+
+                <div class="form-group">
+                    <label for="cateringMessage">Message</label>
+
+                    <textarea
+                        id="cateringMessage"
+                        placeholder="Tell us about the fictional event..."
+                    ></textarea>
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    type="submit"
+                >
+                    Submit Demo Request
+                </button>
+
+            </form>
+
+
+            <div
+                id="cateringSuccess"
+                class="success-box"
+                style="display:none;"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        /*
+        ============================================================
+        RONALDO'S BUFFET — SCHOOL PROJECT
+        ============================================================
+
+        Everything below is fictional/demo content.
+
+        You can change the example prices here without searching
+        through the entire HTML file.
+        ============================================================
+        */
+
+
+        /* =========================
+           PRICES
+        ========================= */
+
+        const platePricing = [
+            {
+                plates: 1,
+                price: 4.99,
+                description: "1 plate"
+            },
+            {
+                plates: 2,
+                price: 7.99,
+                description: "2 plates"
+            },
+            {
+                plates: 3,
+                price: 10.99,
+                description: "3 plates"
+            },
+            {
+                plates: 4,
+                price: 13.99,
+                description: "4 plates"
+            },
+            {
+                plates: 5,
+                price: 16.99,
+                description: "5 plates"
+            }
+        ];
+
+
+        /* =========================
+           EXAMPLE BUSINESS HOURS
+        ========================= */
+
+        /*
+            JavaScript day numbers:
+
+            0 = Sunday
+            1 = Monday
+            2 = Tuesday
+            3 = Wednesday
+            4 = Thursday
+            5 = Friday
+            6 = Saturday
+        */
+
+        const businessHours = {
+            0: { open: "17:00", close: "21:00" },
+            1: { open: "17:00", close: "21:00" },
+            2: { open: "17:00", close: "21:00" },
+            3: { open: "17:00", close: "21:00" },
+            4: { open: "17:00", close: "21:00" },
+            5: { open: "17:00", close: "22:00" },
+            6: { open: "17:00", close: "22:00" }
+        };
+
+
+        /* =========================
+           HELPER FUNCTIONS
+        ========================= */
+
+        function formatMoney(number) {
+            return "$" + Number(number).toFixed(2);
+        }
+
+
+        function convertTimeToMinutes(time) {
+            const parts = time.split(":");
+
+            const hours = Number(parts[0]);
+            const minutes = Number(parts[1]);
+
+            return (hours * 60) + minutes;
+        }
+
+
+        function formatTime(time) {
+            const parts = time.split(":");
+
+            let hours = Number(parts[0]);
+            const minutes = parts[1];
+
+            const suffix = hours >= 12 ? "PM" : "AM";
+
+            if (hours === 0) {
+                hours = 12;
+            } else if (hours > 12) {
+                hours -= 12;
+            }
+
+            return hours + ":" + minutes + " " + suffix;
+        }
+
+
+        /* =========================
+           AUTOMATIC OPEN/CLOSED
+        ========================= */
+
+        function updateOpenStatus() {
+
+            const now = new Date();
+
+            const currentDay = now.getDay();
+
+            const currentMinutes =
+                (now.getHours() * 60) +
+                now.getMinutes();
+
+            const todayHours = businessHours[currentDay];
+
+            const openMinutes =
+                convertTimeToMinutes(todayHours.open);
+
+            const closeMinutes =
+                convertTimeToMinutes(todayHours.close);
+
+            const isOpen =
+                currentMinutes >= openMinutes &&
+                currentMinutes < closeMinutes;
+
+
+            const dayName =
+                now.toLocaleDateString(
+                    undefined,
+                    { weekday: "long" }
+                );
+
+
+            const openStatus =
+                document.getElementById("openStatus");
+
+            const heroStatus =
+                document.getElementById("heroStatus");
+
+            const heroStatusText =
+                document.getElementById("heroStatusText");
+
+
+            const hoursText =
+                formatTime(todayHours.open) +
+                " – " +
+                formatTime(todayHours.close);
+
+
+            if (isOpen) {
+
+                openStatus.innerHTML =
+                    "🟢 <strong>Open now</strong><br>" +
+                    "Today is " +
+                    dayName +
+                    " — " +
+                    hoursText;
+
+                heroStatus.classList.add("open");
+
+                heroStatusText.textContent =
+                    "Open now • " + hoursText;
+
+            } else {
+
+                openStatus.innerHTML =
+                    "🔴 <strong>Closed now</strong><br>" +
+                    "Today is " +
+                    dayName +
+                    " — " +
+                    hoursText;
+
+                heroStatus.classList.remove("open");
+
+                heroStatusText.textContent =
+                    "Closed now • " + hoursText;
+            }
+
+
+            /*
+                Highlight today's row.
+            */
+
+            document
+                .querySelectorAll("#hoursList li")
+                .forEach(function(row) {
+
+                    row.classList.remove("today");
+
+                    const oldTag =
+                        row.querySelector(".today-tag");
+
+                    if (oldTag) {
+                        oldTag.remove();
+                    }
+
+
+                    if (
+                        Number(row.dataset.day) ===
+                        currentDay
+                    ) {
+
+                        row.classList.add("today");
+
+                        const dayNameElement =
+                            row.querySelector("span");
+
+                        const tag =
+                            document.createElement("span");
+
+                        tag.className = "today-tag";
+
+                        tag.textContent = "TODAY";
+
+                        dayNameElement.appendChild(tag);
+                    }
+                });
+        }
+
+
+        /* =========================
+           PRICING TABLE
+        ========================= */
+
+        function renderPricingTable() {
+
+            const tableBody =
+                document.getElementById(
+                    "pricingTableBody"
+                );
+
+            tableBody.innerHTML = "";
+
+
+            platePricing.forEach(function(item) {
+
+                const row =
+                    document.createElement("tr");
+
+                row.innerHTML = `
+                    <td>${item.plates}</td>
+                    <td>${formatMoney(item.price)}</td>
+                    <td>${item.description}</td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+
+        /* =========================
+           PRICE SLIDER
+        ========================= */
+
+        function updatePrice() {
+
+            const slider =
+                document.getElementById(
+                    "priceSlider"
+                );
+
+            const selectedPlates =
+                Number(slider.value);
+
+            const selected =
+                platePricing.find(function(item) {
+                    return item.plates === selectedPlates;
+                });
+
+
+            if (!selected) {
+                return;
+            }
+
+
+            document.getElementById(
+                "priceNumber"
+            ).textContent =
+                formatMoney(selected.price);
+
+
+            document.getElementById(
+                "priceDescription"
+            ).textContent =
+                selected.description;
+        }
+
+
+        /* =========================
+           TAKEOUT PRICE
+        ========================= */
+
+        function updateTakeoutPrice() {
+
+            const select =
+                document.getElementById(
+                    "takeoutPlates"
+                );
+
+            const plates =
+                Number(select.value);
+
+            const selected =
+                platePricing.find(function(item) {
+                    return item.plates === plates;
+                });
+
+
+            if (!selected) {
+                return;
+            }
+
+
+            document.getElementById(
+                "cartPlateText"
+            ).textContent =
+                selected.description;
+
+
+            document.getElementById(
+                "cartPlatePrice"
+            ).textContent =
+                formatMoney(selected.price);
+
+
+            document.getElementById(
+                "cartTotal"
+            ).textContent =
+                formatMoney(selected.price);
+        }
+
+
+        /* =========================
+           MENU FILTER
+        ========================= */
+
+        function setupMenuFilters() {
+
+            const buttons =
+                document.querySelectorAll(
+                    ".filter-button"
+                );
+
+            const cards =
+                document.querySelectorAll(
+                    ".menu-card"
+                );
+
+
+            buttons.forEach(function(button) {
+
+                button.addEventListener(
+                    "click",
+                    function() {
+
+                        const filter =
+                            button.dataset.filter;
+
+
+                        buttons.forEach(function(item) {
+                            item.classList.remove("active");
+                        });
+
+                        button.classList.add("active");
+
+
+                        cards.forEach(function(card) {
+
+                            const category =
+                                card.dataset.category;
+
+
+                            if (
+                                filter === "all" ||
+                                category === filter
+                            ) {
+
+                                card.style.display =
+                                    "block";
+
+                            } else {
+
+                                card.style.display =
+                                    "none";
+                            }
+                        });
+                    }
+                );
+            });
+        }
+
+
+        /* =========================
+           TAKEOUT FORM
+        ========================= */
+
+        function setupTakeoutForm() {
+
+            const form =
+                document.getElementById(
+                    "takeoutForm"
+                );
+
+
+            form.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const name =
+                        document.getElementById(
+                            "customerName"
+                        ).value.trim();
+
+
+                    const contact =
+                        document.getElementById(
+                            "customerContact"
+                        ).value.trim();
+
+
+                    const pickup =
+                        document.getElementById(
+                            "pickupTime"
+                        ).value;
+
+
+                    const plates =
+                        Number(
+                            document.getElementById(
+                                "takeoutPlates"
+                            ).value
+                        );
+
+
+                    const notes =
+                        document.getElementById(
+                            "takeoutNotes"
+                        ).value.trim();
+
+
+                    const selected =
+                        platePricing.find(
+                            function(item) {
+                                return item.plates === plates;
+                            }
+                        );
+
+
+                    if (
+                        !name ||
+                        !contact ||
+                        !pickup ||
+                        !selected
+                    ) {
+
+                        alert(
+                            "Please complete all required fields."
+                        );
+
+                        return;
+                    }
+
+
+                    const success =
+                        document.getElementById(
+                            "takeoutSuccess"
+                        );
+
+
+                    success.style.display = "block";
+
+
+                    success.innerHTML = `
+                        <h3>✅ Demo order created!</h3>
+
+                        <p style="color:#a1a1aa; font-size:13px;">
+                            Thanks, ${escapeHTML(name)}.
+                            Your fictional order contains
+                            ${selected.plates} plate(s).
+                        </p>
+
+                        <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                            Pickup time:
+                            <strong>${escapeHTML(pickup)}</strong>
+                        </p>
+
+                        <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                            Example total:
+                            <strong>${formatMoney(selected.price)}</strong>
+                        </p>
+
+                        ${
+                            notes
+                                ? `
+                                    <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                                        Notes:
+                                        ${escapeHTML(notes)}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+                        <p style="color:#86efac; font-size:12px; margin-top:12px;">
+                            This is only a school-project demonstration.
+                            Nothing was actually ordered or charged.
+                        </p>
+                    `;
+                }
+            );
+        }
+
+
+        /* =========================
+           CATERING FORM
+        ========================= */
+
+        function setupCateringForm() {
+
+            const form =
+                document.getElementById(
+                    "cateringForm"
+                );
+
+
+            form.addEventListener(
+                "submit",
+                function(event) {
+
+                    event.preventDefault();
+
+
+                    const name =
+                        document.getElementById(
+                            "cateringName"
+                        ).value.trim();
+
+
+                    const eventType =
+                        document.getElementById(
+                            "eventType"
+                        ).value;
+
+
+                    const guests =
+                        Number(
+                            document.getElementById(
+                                "guestCount"
+                            ).value
+                        );
+
+
+                    const message =
+                        document.getElementById(
+                            "cateringMessage"
+                        ).value.trim();
+
+
+                    if (
+                        !name ||
+                        !eventType ||
+                        !Number.isFinite(guests) ||
+                        guests < 1
+                    ) {
+
+                        alert(
+                            "Please complete the required fields."
+                        );
+
+                        return;
+                    }
+
+
+                    const success =
+                        document.getElementById(
+                            "cateringSuccess"
+                        );
+
+
+                    success.style.display = "block";
+
+
+                    success.innerHTML = `
+                        <h3>✅ Demo request created!</h3>
+
+                        <p style="color:#a1a1aa; font-size:13px;">
+                            Thanks, ${escapeHTML(name)}.
+                        </p>
+
+                        <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                            Event:
+                            ${escapeHTML(eventType)}
+                        </p>
+
+                        <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                            Guests:
+                            ${guests}
+                        </p>
+
+                        ${
+                            message
+                                ? `
+                                    <p style="color:#a1a1aa; font-size:13px; margin-top:7px;">
+                                        Message:
+                                        ${escapeHTML(message)}
+                                    </p>
+                                  `
+                                : ""
+                        }
+
+                        <p style="color:#86efac; font-size:12px; margin-top:12px;">
+                            This is a school-project demonstration.
+                            No real catering request was sent.
+                        </p>
+                    `;
+                }
+            );
+        }
+
+
+        /* =========================
+           SIMPLE HTML ESCAPING
+        ========================= */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+
+        /* =========================
+           MODALS
+        ========================= */
+
+        function openTakeout() {
+
+            const modal =
+                document.getElementById(
+                    "takeoutModal"
+                );
+
+            modal.classList.add("show");
+
+            document.body.classList.add(
+                "modal-open"
+            );
+        }
+
+
+        function openCatering() {
+
+            const modal =
+                document.getElementById(
+                    "cateringModal"
+                );
+
+            modal.classList.add("show");
+
+            document.body.classList.add(
+                "modal-open"
+            );
+        }
+
+
+        function closeModal(id) {
+
+            const modal =
+                document.getElementById(id);
+
+            if (!modal) {
+                return;
+            }
+
+            modal.classList.remove("show");
+
+            document.body.classList.remove(
+                "modal-open"
+            );
+        }
+
+
+        /* =========================
+           MOBILE NAV
+        ========================= */
+
+        function setupMobileMenu() {
+
+            const button =
+                document.getElementById(
+                    "mobileMenuButton"
+                );
+
+            const links =
+                document.getElementById(
+                    "navLinks"
+                );
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const isOpen =
+                        links.classList.toggle(
+                            "open"
+                        );
+
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        String(isOpen)
+                    );
+                }
+            );
+
+
+            links.querySelectorAll("a")
+                .forEach(function(link) {
+
+                    link.addEventListener(
+                        "click",
+                        function() {
+
+                            links.classList.remove(
+                                "open"
+                            );
+
+                            button.setAttribute(
+                                "aria-expanded",
+                                "false"
+                            );
+                        }
+                    );
+                });
+        }
+
+
+        /* =========================
+           BACK TO TOP
+        ========================= */
+
+        function setupBackToTop() {
+
+            const button =
+                document.getElementById(
+                    "backTop"
+                );
+
+
+            window.addEventListener(
+                "scroll",
+                function() {
+
+                    if (window.scrollY > 500) {
+
+                        button.classList.add(
+                            "show"
+                        );
+
+                    } else {
+
+                        button.classList.remove(
+                            "show"
+                        );
+                    }
+                }
+            );
+
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                }
+            );
+        }
+
+
+        /* =========================
+           MODAL EVENTS
+        ========================= */
+
+        function setupModalEvents() {
+
+            document
+                .querySelectorAll(".modal")
+                .forEach(function(modal) {
+
+                    modal.addEventListener(
+                        "click",
+                        function(event) {
+
+                            if (
+                                event.target === modal
+                            ) {
+
+                                closeModal(
+                                    modal.id
+                                );
+                            }
+                        }
+                    );
+                });
+
+
+            document.addEventListener(
+                "keydown",
+                function(event) {
+
+                    if (event.key === "Escape") {
+
+                        document
+                            .querySelectorAll(".modal.show")
+                            .forEach(function(modal) {
+
+                                closeModal(
+                                    modal.id
+                                );
+                            });
+                    }
+                }
+            );
+        }
+
+
+        /* =========================
+           INITIALIZATION
+        ========================= */
+
+        function initializeWebsite() {
+
+            renderPricingTable();
+
+            updatePrice();
+
+            updateTakeoutPrice();
+
+            updateOpenStatus();
+
+            setupMenuFilters();
+
+            setupTakeoutForm();
+
+            setupCateringForm();
+
+            setupMobileMenu();
+
+            setupBackToTop();
+
+            setupModalEvents();
+
+
+            document
+                .getElementById("priceSlider")
+                .addEventListener(
+                    "input",
+                    updatePrice
+                );
+
+
+            document
+                .getElementById("takeoutPlates")
+                .addEventListener(
+                    "change",
+                    updateTakeoutPrice
+                );
+
+
+            /*
+                Update the open/closed status every minute.
+            */
+
+            setInterval(
+                updateOpenStatus,
+                60000
+            );
+        }
+
+
+        /*
+            Start the website.
+        */
+
+        initializeWebsite();
+
+    </script>
+
+</body>
+</html>
